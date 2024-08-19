@@ -28,13 +28,13 @@ const Footer = () => {
           <img src={pintester_icon} alt="Pintester" />
         </div>
         <div className="footer-icons-container">
-          <img src={whatsapp_icon} alt="whatsapp" />
+          <img src={whatsapp_icon} alt="WhatsApp" />
         </div>
       </div>
 
       <div className="footer-copyright">
         <hr />
-        <p>Copyright @ 2024 - All Right Reserved</p>
+        <p>Copyright @ 2024 - All Rights Reserved</p>
       </div>
     </div>
   );

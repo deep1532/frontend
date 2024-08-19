@@ -1,17 +1,18 @@
 import "./popular.css";
 import data_product from "../assets/data";
 import Item from "../item/item";
+import all_product from "../assets/all_product";
 
 const Popular = () => {
   return (
     <div className="popular">
-      <h1>POPULAR IN WOMEN</h1>
+      <h1>Popular In Women</h1>
       <hr />
       <div className="popular-item">
         {data_product.map((item, i) => {
           return (
             <Item
-              key={i}
+              key={item.id}
               id={item.id}
               name={item.name}
               image={item.image}

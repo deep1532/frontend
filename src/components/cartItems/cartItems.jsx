@@ -6,6 +6,11 @@ import remove_icon from "../assets/cart_cross_icon.png";
 const CartItems = () => {
   const { all_product, cartItems, removeFromCart, getTotalCartAmount } =
     useContext(ShopContext);
+
+  const cartProducts = all_product.filter(
+    (product) => cartItems[product.id] > 0
+  );
+
   return (
     <div className="cartItems">
       <div className="format-main">
@@ -17,38 +22,29 @@ const CartItems = () => {
         <p>Remove</p>
       </div>
       <hr />
-      {all_product.map((e) => {
-        if (cartItems[e.id] > 0) {
-          return (
-            <div>
-              <div className="format format-main">
-                <img
-                  src={e.image}
-                  alt="Product Image"
-                  className="product-icon"
-                />
-                <p>{e.name}</p>
-                <p>{e.new_price}</p>
-                <button className="quantity">{cartItems[e.id]}</button>
-                <p>${e.new_price * cartItems[e.id]}</p>
-                <img
-                  className="remove-icon"
-                  src={remove_icon}
-                  alt="Remove Icon"
-                  onClick={() => {
-                    removeFromCart(e.id);
-                  }}
-                />
-              </div>
-              <hr />
-            </div>
-          );
-        }
-        return null;
-      })}
+
+      {cartProducts.map(({ id, image, name, new_price }) => (
+        <>
+          <div key={id} className="format format-main">
+            <img src={image} alt={name} className="product-icon" />
+            <p>{name}</p>
+            <p>${new_price}</p>
+            <button className="quantity">{cartItems[id]}</button>
+            <p>${new_price * cartItems[id]}</p>
+            <img
+              className="remove-icon"
+              src={remove_icon}
+              alt="Remove"
+              onClick={() => removeFromCart(id)}
+            />
+          </div>
+          <hr />
+        </>
+      ))}
+
       <div className="cart-items-down">
         <div className="total">
-          <h1>cart Totals</h1>
+          <h1>Cart Totals</h1>
           <div>
             <div className="total-items">
               <p>Subtotal</p>
@@ -67,8 +63,9 @@ const CartItems = () => {
           </div>
           <button>PROCEED TO CHECKOUT</button>
         </div>
+
         <div className="promocode">
-          <p>If youpromo code, Enter it here</p>
+          <p>If you have a promo code, enter it here</p>
           <div className="promobox">
             <input type="text" placeholder="Promo code" />
             <button>Submit</button>

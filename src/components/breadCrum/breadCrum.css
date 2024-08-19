@@ -1,10 +1,13 @@
 .breadCrum{
     display: flex;
     align-items: center;
-    gap: 8px;
     color: #5E5E5E;
     font-size: 16px;
     font-weight: 600;
     margin: 60px 170px;
     text-transform: capitalize;
+}
+
+.breadCrum img {
+    margin: 0px 10px;
 }
